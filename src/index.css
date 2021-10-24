@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deskWrapper {
+    width: 90vh;
+    height: 90vh;
+    margin: 0 auto;
+    display: grid;
+}
+
+.vertical {
+    transform: rotate(0deg);
+}
+
+.horizontal {
+    transform: rotate(90deg);
+}
+
+.block {
+    border-radius: 50%;
+    cursor: pointer;
+    transition: .5s;
+    background: url("img/propeller.png") center center / cover;
+}
