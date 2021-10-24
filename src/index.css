@@ -9,6 +9,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 .deskWrapper {
@@ -26,9 +27,25 @@ body {
     transform: rotate(90deg);
 }
 
-.block {
+.propeller {
     border-radius: 50%;
     cursor: pointer;
     transition: .5s;
     background: url("img/propeller.png") center center / cover;
+}
+
+.circle {
+    animation-name: rotation;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes rotation {
+    0% {
+        transform:rotate(0deg);
+    }
+    100% {
+        transform:rotate(360deg);
+    }
 }

@@ -1,9 +1,9 @@
-let desk = document.getElementById('desk')
+let field = document.getElementById('field')
 const size = 4
 
-desk.style.gridTemplate = `repeat(${size}, 1fr) / repeat(${size}, 1fr)`
+field.style.gridTemplate = `repeat(${size}, 1fr) / repeat(${size}, 1fr)`
 
-function reverse(row, col) {
+const reverse = (row, col) => {
     for (let i = 0; i < size; i++) {
         let cell = document.querySelector('[data-i="' + i + '"][data-j="' + col + '"]')
         if (cell.classList.contains('vertical')) {
@@ -33,25 +33,35 @@ function reverse(row, col) {
 
     if (document.getElementsByClassName('vertical').length === 0
     || document.getElementsByClassName('vertical').length === size ** 2) {
-        alert('you win!')
+        let mass = document.getElementsByClassName('propeller')
+        for (let i = 0; i < 16; i++) { mass[i].classList.add('circle') }
     }
 }
 
-for (let i = 0; i < size; i++) {
-    for (let j = 0; j < size; j++) {
-        if (Math.floor(Math.random() * 2) === 1) {
-            desk.innerHTML += `<div class="block vertical" data-i="${i}" data-j="${j}"></div>`
-        } else {
-            desk.innerHTML += `<div class="block horizontal" data-i="${i}" data-j="${j}"></div>`
+const clearField = () => {
+    field.innerHTML = ''
+}
+
+const generationField = () => {
+    clearField()
+    for (let i = 0; i < size; i++) {
+        for (let j = 0; j < size; j++) {
+            if (Math.floor(Math.random() * 2) === 1) {
+                field.innerHTML += `<div class="propeller vertical" data-i="${i}" data-j="${j}"></div>`
+            } else {
+                field.innerHTML += `<div class="propeller horizontal" data-i="${i}" data-j="${j}"></div>`
+            }
         }
     }
 }
 
-for (let i = 0; i < size; i++) {
-    for (let j = 0; j < size; j++) {
-        document.querySelector('[data-i="' + i + '"][data-j="' + j + '"]').addEventListener('click', () => {
-            console.log(i, j)
-            reverse(i, j)
-        })
+const addListeners = () => {
+    for (let i = 0; i < size; i++) {
+        for (let j = 0; j < size; j++) {
+            document.querySelector('[data-i="' + i + '"][data-j="' + j + '"]').addEventListener('click', () => { reverse(i, j) })
+        }
     }
 }
+
+generationField()
+addListeners()
